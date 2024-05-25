@@ -1,16 +1,13 @@
+"use strict";
 // Get the environment variables
-require('dotenv').config()
-
+require('dotenv').config();
 // Require needed node modules
-import express from 'express'
-
+const express = require('express');
 // Initialize your application by calling the function returned by the express module
-const app = express()
-
+const app = express();
 // Declare routes that people can visit on the application
-
 // White Page
-app.get('/', function (req: express.Request, res: express.Response): void {
+app.get('/', function (req, res) {
     res.send(`
         <body style="margin: 0;">
             <div style="border: 1px solid black; height: 10vh; background-color: white;">
@@ -18,16 +15,11 @@ app.get('/', function (req: express.Request, res: express.Response): void {
             </div>
             <h1>White Page</h1>
         </body>
-    `)
-})
-
-
+    `);
+});
 // Color Page
 app.get('/:color', function (req, res) {
-    let myColor: unknown = req.params.color
-    if (typeof(myColor) === 'string') {
-
-    
+    let myColor = req.params.color;
     res.send(`
         <body style="margin: 0;">
             <div style="border: 1px solid black; height: 10vh; background-color: ${myColor};">
@@ -35,10 +27,7 @@ app.get('/:color', function (req, res) {
             </div>
             <h1 style="color: ${myColor};">${myColor.charAt(0).toUpperCase() + myColor.slice(1)} Page</h1>
         </body>
-    `)
-    }
-})
-
-
+    `);
+});
 // Listen to a port number defined by a local environment variable
-app.listen(process.env.PORT)
+app.listen(process.env.PORT);
